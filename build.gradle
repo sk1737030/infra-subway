@@ -1,8 +1,9 @@
 plugins {
-	id 'org.springframework.boot' version '2.4.0-SNAPSHOT'
-	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-	id 'org.flywaydb.flyway' version '6.0.4'
-	id 'java'
+    id 'org.springframework.boot' version '2.4.0-SNAPSHOT'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'org.flywaydb.flyway' version '6.0.4'
+    id 'java'
+    id 'com.google.cloud.tools.jib' version '1.0.0'
 }
 
 group = 'nextstep'
@@ -10,45 +11,55 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
-	mavenCentral()
-	maven { url 'https://repo.spring.io/milestone' }
-	maven { url 'https://repo.spring.io/snapshot' }
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
 dependencies {
-	// spring
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // spring
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-	runtimeOnly("com.h2database:h2")
-	runtimeOnly("mysql:mysql-connector-java:8.0.17")
-	runtimeOnly("org.flywaydb:flyway-core:5.2.0")
+    runtimeOnly("com.h2database:h2")
+    runtimeOnly("mysql:mysql-connector-java:8.0.17")
+    runtimeOnly("org.flywaydb:flyway-core:5.2.0")
 
-	// handlebars
-	implementation 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.0'
+    // handlebars
+    implementation 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.0'
 
-	// log
-	implementation 'net.rakugakibox.spring.boot:logback-access-spring-boot-starter:2.7.1'
+    // log
+    implementation 'net.rakugakibox.spring.boot:logback-access-spring-boot-starter:2.7.1'
 
-	// jgraph
-	implementation 'org.jgrapht:jgrapht-core:1.0.1'
+    // jgraph
+    implementation 'org.jgrapht:jgrapht-core:1.0.1'
 
-	// jwt
-	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    // jwt
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
-	testImplementation 'io.rest-assured:rest-assured:3.3.0'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.rest-assured:rest-assured:3.3.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.h2database:h2'
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 flyway {
-	url = 'jdbc:mysql://localhost:13306/archive?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8'
-	user = 'user'
-	password = 'password'
-	schemas = 'migration'
+    url = 'jdbc:mysql://localhost:13306/archive?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8'
+    user = 'user'
+    password = 'password'
+    schemas = 'migration'
+}
+
+jib{
+    allowInsecureRegistries = true
 }
