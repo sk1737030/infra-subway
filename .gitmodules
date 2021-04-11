@@ -1,6 +1,3 @@
 [submodule "src/main/resources/config"]
 	path = src/main/resources/config
 	url = https://github.com/sk1737030/deploy
-[submodule "deploy"]
-	path = deploy
-	url = https://github.com/sk1737030/deploy
