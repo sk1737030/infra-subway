@@ -54,6 +54,7 @@ public class Line extends BaseEntity implements Serializable {
         if (isDownStationExisted) {
             updateDownStation(upStation, downStation, distance);
         }
+
         sections.add(new Section(this, upStation, downStation, distance));
     }
 
