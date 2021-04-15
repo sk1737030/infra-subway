@@ -3,6 +3,7 @@ package nextstep.subway.utils;
 import com.google.common.base.CaseFormat;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@ActiveProfiles("test")
 public class DatabaseCleanup implements InitializingBean {
     @PersistenceContext
     private EntityManager entityManager;
