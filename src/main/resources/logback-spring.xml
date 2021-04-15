@@ -22,7 +22,7 @@
     <logger name="json" level="INFO" >
         <appender-ref ref="json" />
     </logger>-->
-<!--
+0
     <springProfile name="console-logging">
         <appender-ref ref="console"/>
     </springProfile>
@@ -32,14 +32,13 @@
     <springProfile name="file-logging">
         <appender-ref ref="file"/>
     </springProfile>
--->
 
     <root>
         <springProfile name="console-logging">
             <appender-ref ref="console"/>
         </springProfile>
         <springProfile name="json-logging">
-            <appender-ref ref="file"/>
+            <appender-ref ref="json"/>
         </springProfile>
         <springProfile name="file-logging">
             <appender-ref ref="file"/>
