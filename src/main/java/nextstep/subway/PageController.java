@@ -11,6 +11,7 @@ public class PageController {
 
     private static final Logger log = LoggerFactory.getLogger(PageController.class);
     private static final Logger fileLogger = LoggerFactory.getLogger("file");
+    private static final Logger jsonLogger = LoggerFactory.getLogger("json");
 
     @GetMapping(value = {
             "/",
@@ -26,6 +27,8 @@ public class PageController {
     public String index() {
         log.error("Logger Test An ERROR Message ");
         fileLogger.error("파일 로깅 테스트 입니다.");
+        jsonLogger.error("Json 로깅 테스트 입니다.");
+
 
         return "index";
     }
