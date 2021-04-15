@@ -15,7 +15,7 @@ jobs:
       - name: Checkout submodules
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.SUB_MODULE_TOKEN }}
+          token: ${{ secrets.SUB_MODULE_SECRET }}
           submodules: recursive
 
       - name: Set up JDK 1.8
