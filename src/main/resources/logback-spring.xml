@@ -6,6 +6,7 @@
     <include resource="file-appender.xml"/>
     <include resource="json-appender.xml"/>
 
+
     <root>
         <springProfile name="console-logging">
             <appender-ref ref="console"/>
