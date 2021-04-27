@@ -26,8 +26,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
     private SubwayVersion subwayVersion;
 
-    
-    // TODO:: version 하위에 바로읽을 수 있게 변경하기 
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         logger.info("version  =  {} ", subwayVersion.getVersion());
@@ -35,7 +34,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/css/")
                 .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS).cachePrivate());
 
-        registry.addResourceHandler(PREFIX_STATIC_RESOURCES + "/" + subwayVersion.getVersion() + " / js/**")
+        registry.addResourceHandler(PREFIX_STATIC_RESOURCES + "/" + subwayVersion.getVersion() + "/js/**")
                 .addResourceLocations("classpath:/static/js/")
                 .setCacheControl(CacheControl.noCache().cachePrivate());
     }
