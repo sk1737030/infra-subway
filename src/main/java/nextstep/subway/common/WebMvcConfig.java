@@ -26,10 +26,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
     private SubwayVersion subwayVersion;
 
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        logger.info("version  =  {} ", subwayVersion.getVersion());
         registry.addResourceHandler(PREFIX_STATIC_RESOURCES + "/" + subwayVersion.getVersion() + "/css/**")
                 .addResourceLocations("classpath:/static/css/")
                 .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS).cachePrivate());
