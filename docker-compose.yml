@@ -1,0 +1,14 @@
+version: '3'
+services:
+  redis: # Redis 부분.
+    image: redis
+    command: redis-server --requirepass changeme
+    restart: always
+    ports:
+      - "6379:6379"
+  subway-web:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/log/next-step/:/logs/
