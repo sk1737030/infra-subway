@@ -59,7 +59,6 @@ public class LineService {
     @Cacheable(value = "line", key = "#id")
     public LineResponse findLineResponseById(Long id) {
         Line persistLine = findLineById(id);
-        log.info("sssssssssssssssssssss");
         return LineResponse.of(persistLine);
     }
 
