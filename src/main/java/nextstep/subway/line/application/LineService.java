@@ -57,19 +57,19 @@ public class LineService {
 
     // 메서드 실행 전에 캐시를 확인하여 최소 하나의 캐시가 존재한다면 값을 반환한다.
     // SpEL 표현식을 활용하여 조건부 캐싱이 가능하다.
-    @Cacheable(value = "line", key = "#id")
+    //@Cacheable(value = "line", key = "#id")
     public LineResponse findLineResponseById(Long id) {
         Line persistLine = lineRepository.findById(id).orElseThrow(RuntimeException::new);
         return LineResponse.of(persistLine);
     }
 
-    @CachePut(value = "line", key = "#id")
+    //@CachePut(value = "line", key = "#id")
     public void updateLine(Long id, LineRequest lineUpdateRequest) {
         Line persistLine = lineRepository.findById(id).orElseThrow(RuntimeException::new);
         persistLine.update(new Line(lineUpdateRequest.getName(), lineUpdateRequest.getColor()));
     }
 
-    @CacheEvict(value = "line", key = "#id")
+    //@CacheEvict(value = "line", key = "#id")
     public void deleteLineById(Long id) {
         lineRepository.deleteById(id);
     }
